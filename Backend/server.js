@@ -17,13 +17,16 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
+const userRoutes=require("./routes/userRoutes");
+
+app.use("/api/v1/user",userRoutes);
 
 //SAMPLE
-app.get("/", (req, res) => {
-  res.status(200).send({
-    msg: "Welcome to the API",
-  });
-});
+// app.get("*", (req, res) => {
+//   res.status(200).send({
+//     msg: "Welcome to the API",
+//   });
+// });
 
 //listen
 const PORT = process.env.PORT || 1234;
