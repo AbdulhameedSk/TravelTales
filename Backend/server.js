@@ -29,7 +29,7 @@ app.use("/api/v1/user",userRoutes);
 // });
 
 //listen
-const PORT = process.env.PORT || 1234;
+const PORT = process.env.PORT || 1535;
 const mode = process.env.DEV_MODE;
 app.listen(PORT, () => {
   console.log(`Listening at ${mode} ` + PORT.bgRed);
