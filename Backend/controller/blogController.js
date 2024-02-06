@@ -1,4 +1,5 @@
 const blogModel = require("../models/blogModel.js");
+const userModel = require("../models/userModels.js");
 exports.getAllBlogsController = async (req, res) => {
   try {
     const blogs = await blogModel.find({});
@@ -24,10 +25,16 @@ exports.getAllBlogsController = async (req, res) => {
 };
 exports.createBlogController = async (req, res) => {
   try {
-    const { title, description, image } = req.body;
-    if (!title || !description) {
+    const { title, description, image, user } = req.body;
+    if (!title || !description || !user) {
       res.status(400).send({
         msg: "Plese fill title or description",
+      });
+    }
+    const exist = await userModel.findById(user);
+    if (!exists) {
+      return res.status(400).send({
+        msg: "Unable to find user",
       });
     }
     const newBlog = new blogModel({ title, description, image });
