@@ -17,9 +17,11 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-const userRoutes=require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 
-app.use("/api/v1/user",userRoutes);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/blog", blogRoutes);
 
 //SAMPLE
 // app.get("*", (req, res) => {
