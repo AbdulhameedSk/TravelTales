@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const blogModel = require("../models/blogModel.js");
 const userModel = require("../models/userModels.js");
 exports.getAllBlogsController = async (req, res) => {
@@ -32,12 +33,18 @@ exports.createBlogController = async (req, res) => {
       });
     }
     const exist = await userModel.findById(user);
-    if (!exists) {
+    if (!exist) {
       return res.status(400).send({
         msg: "Unable to find user",
       });
     }
+
     const newBlog = new blogModel({ title, description, image });
+    const session=await mongoose.startSession();
+    session.startTransaction();
+    await newBlog.save({session});
+    exist.blogs.push({session});
+    await session.commitTransaction();
     await newBlog.save();
     return res.status(200).send({
       msg: "CREATED",
