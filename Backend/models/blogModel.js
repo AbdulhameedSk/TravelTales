@@ -13,14 +13,14 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: [true, "Image Required"],
     },
-    user:{
-        type:mongoose.Types.ObjectId,
-        ref:'User',
-        required:[true,"user ID required"]
-    }
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: [true, "user ID required"],
+    },
   },
   { timestamps: true }
 );
 
-const blogModel = mongoose.model("blog", blogSchema);
+const blogModel = mongoose.model("Blog", blogSchema);
 module.exports = blogModel;
