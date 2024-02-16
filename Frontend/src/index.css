@@ -3,6 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
-body{
-    font-family: 'Roboto', sans-serif;
+body {
+  font-family: "Roboto", sans-serif;
+}
+.header-button {
+  background-color: #000000 !important;
+  border: none !important;
+  color: rgb(206, 201, 201) !important;
+  padding: 10px 20px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  font-size: 16px !important;
+  margin: 4px 2px !important;
+  cursor: pointer !important;
+  -webkit-transition-duration: 0.4s !important; /* For Safari 3.1 to 6.0 */
+  transition-duration: 0.4s !important; /* For Chrome, Firefox & Opera */
 }
