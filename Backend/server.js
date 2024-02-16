@@ -31,7 +31,7 @@ app.use("/api/v1/blog", blogRoutes);
 // });
 
 //listen
-const PORT = process.env.PORT || 1535;
+const PORT = process.env.PORT || 1996;
 const mode = process.env.DEV_MODE;
 app.listen(PORT, () => {
   console.log(`Listening at ${mode} ` + PORT.bgRed);
