@@ -14,13 +14,11 @@ const Register = () => {
     });
   };
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://127.0.0.1:8080/api/v1/user/register",
+        "http://localhost:8080/api/v1/user/register",
         {
           username: input.name,
           email: input.email,
@@ -36,13 +34,11 @@ const Register = () => {
       }
     } catch (error) {
       console.error("Error occurred:", error); // Log any errors that occur during the request
-      alert("An error occurred while registering. Please try again later.");
+      alert("USER ALREADY EXISTS.");
     }
     console.log(input);
   };
 
-
-  
   return (
     <Container
       component="main"
