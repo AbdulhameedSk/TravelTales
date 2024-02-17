@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
+    "concurrently": "^8.2.2",
+    "tdesign-react": "^1.5.1"
   },
   "name": "blog",
   "version": "1.0.0",

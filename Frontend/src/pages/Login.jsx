@@ -1,26 +1,73 @@
 import React, { useState } from "react";
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../redux/store";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [input, setInput] = useState({ password: "", email: "" });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleChange = (event) => {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log(`Logging in with username: ${username} and password: ${password}`);
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/user/login",
+        {
+          email: input.email,
+          password: input.password,
+        }
+      );
+
+      if (data.success) {
+        dispatch(authActions.login());
+        alert("Login Success");
+        navigate("/");
+      } else {
+        alert("Registration failed"); // Handle unsuccessful registration
+      }
+    } catch (error) {
+      console.error("Error occurred:", error); // Log any errors that occur during the request
+      alert("USER ALREADY EXISTS.");
+    }
+    console.log(input);
   };
 
   return (
-    <Container component="main" maxWidth="xs" style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      height: '100vh' 
-    }}>
-      <Box boxShadow={24} padding={2} bgcolor="background.paper" borderRadius={2}>
-        <Typography component="h1" variant="h5" style={{ color: 'black' }}>
+    <Container
+      component="main"
+      maxWidth="xs"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Box
+        boxShadow={24}
+        padding={2}
+        bgcolor="background.paper"
+        borderRadius={2}
+      >
+        <Typography component="h1" variant="h5" style={{ color: "black" }}>
           Login
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -29,13 +76,13 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
+            id="email"
+            label="email"
+            name="email"
+            autoComplete="email"
             autoFocus
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={input.email}
+            onChange={handleChange}
           />
           <TextField
             variant="outlined"
@@ -47,14 +94,17 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={input.password}
+            onChange={handleChange}
           />
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <Button>Not Registered Yet? Please Register</Button>
+          </Link>{" "}
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            style={{ backgroundColor: 'black', color: 'white' }}
+            style={{ backgroundColor: "black", color: "white" }}
           >
             Login
           </Button>

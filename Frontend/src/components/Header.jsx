@@ -9,11 +9,25 @@ import {
   Tab,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../redux/store";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const isLogin = useSelector((state) => state.isLogin);
   const [value, setValue] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    try {
+      dispatch(authActions.logout());
+      navigate("/login"); 
+      console.log("Logout success");
+    } catch (error) {
+      alert("error in logout");
+    }
+  };
 
   return (
     <>
@@ -77,7 +91,11 @@ const Header = () => {
               </>
             )}
             {isLogin && (
-              <Button variant="contained" sx={{ margin: 1, color: "white" }}>
+              <Button
+                onClick={handleLogout}
+                variant="contained"
+                sx={{ margin: 1, color: "white" }}
+              >
                 Logout
               </Button>
             )}
