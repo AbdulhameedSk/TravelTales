@@ -19,7 +19,15 @@ const Blogs = () => {
   useEffect(() => {
     getAllBlogs();
   }, []);
-  return <BlogCard />;
+
+  return (
+    <div>
+      {blogs && 
+        blogs.map((blog) => {
+          return <BlogCard title={blog.title} description={blog.description} image={blog.image} />;
+        })}
+    </div> 
+  );
 };
 
 export default Blogs;
