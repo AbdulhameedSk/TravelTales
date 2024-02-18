@@ -54,7 +54,7 @@ exports.createBlogController = async (req, res) => {
     await session.commitTransaction();
 
     return res.status(200).send({
-      msg: "CREATED",
+      success:true,
       newBlog,
     });
   } catch (error) {

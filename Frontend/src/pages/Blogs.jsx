@@ -29,7 +29,7 @@ const Blogs = () => {
         blogs.map((blog) => {
           return (
             <BlogCard
-              key={blog._id} 
+              id={blog._id} 
               title={blog.title}
               description={blog.description}
               image={blog.image}
