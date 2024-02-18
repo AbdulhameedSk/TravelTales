@@ -1,28 +1,27 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import BlogCard from "../components/BlogCard";
-const Blogs = () => {
+const UserBlogs = () => {
   const [blogs, setBlogs] = useState([]);
-  const getAllBlogs = async () => {
+  const getUserBlogs = async () => {
     try {
+      const id = localStorage.getItem("userId");
       const { data } = await axios.get(
-        "http://localhost:8080/api/v1/blog/all-blogs"
+        `http://localhost:8080/api/v1/blog/user-blog/${id}`
       );
       if (data?.success) {
-        setBlogs(data?.blogs);
+        setBlogs(data?.userBlog.blogs);
       }
-    } catch (err) {
-      console.error("Error occurred:", err);
-      alert("Error in fetching blogs");
+    } catch (error) {
+      alert(error);
     }
   };
   useEffect(() => {
-    getAllBlogs();
+    getUserBlogs();
   }, []);
-
   return (
     <div>
-      {blogs &&
+      {blogs && 
         blogs.map((blog) => {
           return (
             <BlogCard
@@ -37,4 +36,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default UserBlogs;
