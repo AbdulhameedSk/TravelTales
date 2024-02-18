@@ -7,7 +7,7 @@ const connectDB = async () => {
     console.log("Mongo Connected "+mongoose.connection.host.bgGreen);
   } catch (error) {
     //console.log("MongoDB URL:", process.env.MONGO_URL);
-    console.log("MongoDB URL:", process.env.MONGO_URL.bgRed);
+    console.log("MongoDB Connection Error:", process.env.MONGO_URL.bgRed);
 }
 };
 

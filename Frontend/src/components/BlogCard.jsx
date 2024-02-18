@@ -5,8 +5,11 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
 import IconButton from "@mui/material/IconButton";
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -25,7 +28,12 @@ export default function BlogCard({
   image,
   username,
   date,
+  id,
+  isUser,
 }) {
+
+  
+
   return (
     <ThemeProvider theme={theme}>
       <Card
@@ -45,7 +53,16 @@ export default function BlogCard({
           },
         }}
       >
-        {" "}
+        {isUser && (
+          <Box display={"flex"}>
+            <IconButton onChange={handleEdit} sx={{marginLeft:"auto"}}>
+              <EditSharpIcon />
+            </IconButton>
+            <IconButton>
+              <DeleteSharpIcon />
+            </IconButton>
+          </Box>
+        )}
         <CardHeader
           avatar={
             <Avatar
