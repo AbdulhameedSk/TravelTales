@@ -44,7 +44,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error occurred:", error); // Log any errors that occur during the request
-      alert("USER ALREADY EXISTS.");
+      alert(error);
     }
     console.log(input);
   };

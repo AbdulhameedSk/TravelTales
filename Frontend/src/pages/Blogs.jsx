@@ -22,11 +22,19 @@ const Blogs = () => {
 
   return (
     <div>
-      {blogs && 
+      {blogs &&
         blogs.map((blog) => {
-          return <BlogCard title={blog.title} description={blog.description} image={blog.image} />;
+          return (
+            <BlogCard
+              title={blog.title}
+              description={blog.description}
+              image={blog.image}
+              username={blog.user.username}
+              date={new Date(blog.createdAt).toLocaleDateString()}
+            />
+          );
         })}
-    </div> 
+    </div>
   );
 };
 
