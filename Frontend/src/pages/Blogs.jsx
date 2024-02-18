@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import BlogCard from "../components/BlogCard";
+
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
+
   const getAllBlogs = async () => {
     try {
       const { data } = await axios.get(
@@ -16,6 +18,7 @@ const Blogs = () => {
       alert("Error in fetching blogs");
     }
   };
+
   useEffect(() => {
     getAllBlogs();
   }, []);
@@ -26,7 +29,9 @@ const Blogs = () => {
         blogs.map((blog) => {
           return (
             <BlogCard
-                description={blog.description}
+              key={blog._id} 
+              title={blog.title}
+              description={blog.description}
               image={blog.image}
               username={blog.user.username}
               date={new Date(blog.createdAt).toLocaleDateString()}

@@ -66,7 +66,8 @@ export default function BlogCard({
           alt="Billo Bagge Billeyaa Dagi Kargi"
         />
         <CardContent>
-          <Typography variant="body2">{description}</Typography>
+          <Typography variant="h6">Title : {title}</Typography>
+          <Typography variant="body2">Description : {description}</Typography>
         </CardContent>
       </Card>
     </ThemeProvider>
