@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -31,8 +32,10 @@ export default function BlogCard({
   id,
   isUser,
 }) {
-
-  
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    navigate(`/blog-details/${id}`);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -55,7 +58,7 @@ export default function BlogCard({
       >
         {isUser && (
           <Box display={"flex"}>
-            <IconButton onChange={handleEdit} sx={{marginLeft:"auto"}}>
+            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
               <EditSharpIcon />
             </IconButton>
             <IconButton>
