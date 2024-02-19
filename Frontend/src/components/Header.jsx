@@ -14,7 +14,9 @@ import { authActions } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const isLogin = useSelector((state) => state.isLogin);
+  let isLogin = useSelector((state) => state.isLogin);
+  isLogin=isLogin || localStorage.getItem("userId");
+
   const [value, setValue] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
