@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -43,7 +44,7 @@ export default function BlogCard({
         `http://localhost:8080/api/v1/blog/delete-blog/${id}`
       );
       if (data?.success) {
-        alert("Blog deleted");
+        toast.success("Blog deleted");
         window.location.reload();
       }
     } catch (error) {

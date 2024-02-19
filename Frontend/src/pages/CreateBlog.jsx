@@ -1,32 +1,38 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from 'react-hot-toast';
+
 const CreateBlog = () => {
-    const userId=localStorage.getItem("userId");
-    const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
     image: "",
   });
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputs);
-    try{
-        const {data}=await axios.post("http://localhost:8080/api/v1/blog/create-blog",{
-            title:inputs.title,
-            description: inputs.description,
-            image: inputs.image,
-            user:userId
-        });
-        if(data?.success){
-            alert("Blog created successfully");
-            navigate('/my-blogs');
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/blog/create-blog",
+        {
+          title: inputs.title,
+          description: inputs.description,
+          image: inputs.image,
+          user: userId,
         }
-    }catch(error){
-        console.log(error);    }
+      );
+      if (data?.success) {
+        toast.success("Blog created successfully");
+        navigate("/my-blogs");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInputChange = (e) => {
