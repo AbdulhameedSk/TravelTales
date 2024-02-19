@@ -11,6 +11,7 @@ import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -36,7 +37,19 @@ export default function BlogCard({
   const handleEdit = () => {
     navigate(`/blog-details/${id}`);
   };
-
+  const handleDelete = async () => {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:8080/api/v1/blog/delete-blog/${id}`
+      );
+      if (data?.success) {
+        alert("Blog delete");
+        navigate("/my-blogs");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <ThemeProvider theme={theme}>
       <Card
@@ -61,7 +74,7 @@ export default function BlogCard({
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
               <EditSharpIcon />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleDelete}>
               <DeleteSharpIcon />
             </IconButton>
           </Box>

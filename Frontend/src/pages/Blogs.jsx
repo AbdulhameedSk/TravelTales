@@ -29,12 +29,12 @@ const Blogs = () => {
         blogs.map((blog) => {
           return (
             <BlogCard
-              id={blog._id} 
+              id={blog?._id} 
               isUser={localStorage.getItem("userId") === blog.user._id}
-              title={blog.title}
-              description={blog.description}
-              image={blog.image}
-              username={blog.user.username}
+              title={blog?.title}
+              description={blog?.description}
+              image={blog?.image}
+              username={blog?.user.username}
               date={new Date(blog.createdAt).toLocaleDateString()}
             />
           );
