@@ -43,8 +43,8 @@ export default function BlogCard({
         `http://localhost:8080/api/v1/blog/delete-blog/${id}`
       );
       if (data?.success) {
-        alert("Blog delete");
-        navigate("/my-blogs");
+        alert("Blog deleted");
+        window.location.reload(); 
       }
     } catch (error) {
       console.log(error);
