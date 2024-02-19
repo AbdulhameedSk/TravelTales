@@ -44,7 +44,7 @@ export default function BlogCard({
       );
       if (data?.success) {
         alert("Blog deleted");
-        window.location.reload(); 
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -72,10 +72,10 @@ export default function BlogCard({
         {isUser && (
           <Box display={"flex"}>
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-              <EditSharpIcon />
+              <EditSharpIcon color="info" />
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <DeleteSharpIcon />
+              <DeleteSharpIcon color="error" />
             </IconButton>
           </Box>
         )}
