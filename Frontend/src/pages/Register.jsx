@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [input, setInput] = useState({ name: "", password: "", email: "" });
@@ -27,7 +28,7 @@ const Register = () => {
       );
 
       if (data.success) {
-        alert("SUCCESS");
+        toast.success("SUCCESS");
         navigate("/login");
       } else {
         alert("Registration failed"); // Handle unsuccessful registration

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../redux/store";
+import toast from 'react-hot-toast';
 import {
   Box,
   Button,
@@ -38,7 +39,7 @@ const Login = () => {
       if (data.success) {
         localStorage.setItem('userId', data?.user._id);
         dispatch(authActions.login());
-        alert("Login Success");
+        toast.success("Login Success");
         navigate("/");
       } else {
         alert("Registration failed"); // Handle unsuccessful registration
