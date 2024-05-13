@@ -3,7 +3,7 @@ WORKDIR /app/backend
 COPY Backend/package*.json ./
 RUN npm install
 COPY Backend .
-EXPOSE 8080
+EXPOSE 5000
 
 FROM node:20 AS frontend
 WORKDIR /app/frontend

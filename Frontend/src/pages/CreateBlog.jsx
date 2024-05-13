@@ -18,7 +18,7 @@ const CreateBlog = () => {
     console.log(inputs);
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/blog/create-blog",
+        "http://localhost:5000/api/v1/blog/create-blog",
         {
           title: inputs.title,
           description: inputs.description,

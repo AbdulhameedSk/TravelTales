@@ -13,7 +13,7 @@ const BlogDetails = () => {
   const getBlogDetails = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/v1/blog/get-blog/${id}`
+        `http://localhost:5000/api/v1/blog/get-blog/${id}`
       );
       if (data.success) {
         setBlog(data?.blog);

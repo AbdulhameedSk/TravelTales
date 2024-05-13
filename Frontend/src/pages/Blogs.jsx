@@ -8,7 +8,7 @@ const Blogs = () => {
   const getAllBlogs = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/v1/blog/all-blogs"
+        "http://localhost:5000/api/v1/blog/all-blogs"
       );
       if (data?.success) {
         setBlogs(data?.blogs);
